@@ -11,6 +11,7 @@
 		A256C45222E6A70E00CCC8FE /* text.txt in Resources */ = {isa = PBXBuildFile; fileRef = A256C45122E6A70E00CCC8FE /* text.txt */; };
 		A256C45422E8443300CCC8FE /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A256C45322E8443300CCC8FE /* SubjectViewController.swift */; };
 		A256C45822E9559700CCC8FE /* CustomStringCovertibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A256C45722E9559700CCC8FE /* CustomStringCovertibleViewController.swift */; };
+		A256C48422F01B9300CCC8FE /* TraitsSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A256C48322F01B9300CCC8FE /* TraitsSequence.swift */; };
 		A2EBA82322D602E000F4D0AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EBA82222D602E000F4D0AE /* AppDelegate.swift */; };
 		A2EBA82522D602E000F4D0AE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EBA82422D602E000F4D0AE /* ViewController.swift */; };
 		A2EBA82822D602E000F4D0AE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2EBA82622D602E000F4D0AE /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		A256C45122E6A70E00CCC8FE /* text.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.txt; sourceTree = "<group>"; };
 		A256C45322E8443300CCC8FE /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
 		A256C45722E9559700CCC8FE /* CustomStringCovertibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStringCovertibleViewController.swift; sourceTree = "<group>"; };
+		A256C48322F01B9300CCC8FE /* TraitsSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitsSequence.swift; sourceTree = "<group>"; };
 		A2EBA81F22D602E000F4D0AE /* RxPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2EBA82222D602E000F4D0AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2EBA82422D602E000F4D0AE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				A256C44F22E5C6DF00CCC8FE /* ObservableViewController.swift */,
 				A256C45322E8443300CCC8FE /* SubjectViewController.swift */,
 				A256C45722E9559700CCC8FE /* CustomStringCovertibleViewController.swift */,
+				A256C48322F01B9300CCC8FE /* TraitsSequence.swift */,
 			);
 			path = RxPractice;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				A256C45822E9559700CCC8FE /* CustomStringCovertibleViewController.swift in Sources */,
 				A256C45022E5C6DF00CCC8FE /* ObservableViewController.swift in Sources */,
 				A256C45422E8443300CCC8FE /* SubjectViewController.swift in Sources */,
+				A256C48422F01B9300CCC8FE /* TraitsSequence.swift in Sources */,
 				A2EBA82522D602E000F4D0AE /* ViewController.swift in Sources */,
 				A2EBA82322D602E000F4D0AE /* AppDelegate.swift in Sources */,
 			);
