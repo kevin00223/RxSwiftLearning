@@ -1,0 +1,6 @@
+module Pods_FilteringOperators {
+  umbrella header "Pods-FilteringOperators-umbrella.h"
+
+  export *
+  module * { export * }
+}
