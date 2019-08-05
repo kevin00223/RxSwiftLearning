@@ -1,0 +1,6 @@
+module Pods_Combinestagram {
+  umbrella header "Pods-Combinestagram-umbrella.h"
+
+  export *
+  module * { export * }
+}
