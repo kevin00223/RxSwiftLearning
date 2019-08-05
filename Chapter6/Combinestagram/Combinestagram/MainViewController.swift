@@ -57,6 +57,10 @@ class MainViewController: UIViewController {
                 self?.updateUI(photos: photos)
             })
             .disposed(by: disposeBag)
+        
+        multiSubscribeToTheSameObservableTest()
+        
+//        shareTest()
     }
     
     private func updateUI(photos: [UIImage]) {
@@ -105,8 +109,9 @@ class MainViewController: UIViewController {
         let photosViewController = storyboard!.instantiateViewController(withIdentifier: "PhotosViewController") as! PhotosViewController
         
         // 在控制器跳转之前, 对selectedPhotos这个可观察序列进行订阅
-        photosViewController.selectedPhotos
-            .subscribe(onNext: { [weak self] newImage in
+//        photosViewController.selectedPhotos
+            let newPhotos = photosViewController.selectedPhotos.share()
+            newPhotos.subscribe(onNext: { [weak self] newImage in
                 guard let images = self?.images else { return }
                 images.value.append(newImage)
             }) {
@@ -176,5 +181,36 @@ extension MainViewController {
     func getStartNumber() -> Int {
         start += 1
         return start
+    }
+}
+
+extension MainViewController {
+    /// share操作符demo
+    func shareTest() {
+        let sequenceOfInts = PublishSubject<Int>()
+        let a = sequenceOfInts.map{ i -> Int in
+            print("MAP---\(i)")
+            return i * 2
+        }.shareReplay(3)
+        
+        let b = a.subscribe(onNext: { ele in
+            print("--1--\(ele)")
+        })
+
+        sequenceOfInts.on(.next(1))
+        sequenceOfInts.on(.next(2))
+        
+        let c = a.subscribe(onNext: { ele in
+            print("--2--\(ele)")
+        })
+
+        sequenceOfInts.on(.next(3))
+        sequenceOfInts.on(.next(4))
+        
+        let d = a.subscribe(onNext: { ele in
+            print("--3--\(ele)")
+        })
+        
+        sequenceOfInts.on(.completed)
     }
 }
