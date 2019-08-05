@@ -116,6 +116,10 @@ class MainViewController: UIViewController {
         let newPhotos = photosViewController.selectedPhotos.share()
         
         newPhotos
+            .takeWhile({ [weak self] image -> Bool in
+                // 只保存6张照片
+                return (self?.images.value.count ?? 0) < 6
+            })
             .filter({ newImage -> Bool in
                 // 只保留横向的图片
                 return newImage.size.width > newImage.size.height

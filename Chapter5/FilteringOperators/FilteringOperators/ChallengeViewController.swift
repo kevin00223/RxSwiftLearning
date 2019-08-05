@@ -57,6 +57,7 @@ class ChallengeViewController: UIViewController {
         }
     }
     
+    
     // 将int数组转成字符串
     func phoneNumber(from inputs: [Int]) -> String {
         var ph = inputs.map { element -> String in
