@@ -112,7 +112,12 @@ class MainViewController: UIViewController {
 //        photosViewController.selectedPhotos
         let newPhotos = photosViewController.selectedPhotos.share()
         
-        newPhotos.subscribe(onNext: { [weak self] newImage in
+        newPhotos
+            .filter({ newImage -> Bool in
+                // 只保留横向的图片
+                return newImage.size.width > newImage.size.height
+            })
+            .subscribe(onNext: { [weak self] newImage in
             guard let images = self?.images else { return }
             images.value.append(newImage)
             }) {
