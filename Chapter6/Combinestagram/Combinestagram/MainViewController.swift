@@ -110,12 +110,20 @@ class MainViewController: UIViewController {
         
         // 在控制器跳转之前, 对selectedPhotos这个可观察序列进行订阅
 //        photosViewController.selectedPhotos
-            let newPhotos = photosViewController.selectedPhotos.share()
-            newPhotos.subscribe(onNext: { [weak self] newImage in
-                guard let images = self?.images else { return }
-                images.value.append(newImage)
+        let newPhotos = photosViewController.selectedPhotos.share()
+        
+        newPhotos.subscribe(onNext: { [weak self] newImage in
+            guard let images = self?.images else { return }
+            images.value.append(newImage)
             }) {
                 print("completed photo selection")
+            }
+            .disposed(by: disposeBag)
+        
+        // ⚠️ignoreElements: it discards all elements of the source sequence and lets through only .completed or .error
+        newPhotos.ignoreElements()
+            .subscribe { [weak self] _ in
+                self?.updateNavigationIcon()
             }
             .disposed(by: disposeBag)
         
@@ -129,6 +137,15 @@ class MainViewController: UIViewController {
             // 由于是Completable 只会发出一个completed或者一个error事件 (本例中是completed) 所以这里不用对事件做处理
             .subscribe()
             .disposed(by: disposeBag)
+    }
+    
+    // 更新导航按钮图标
+    private func updateNavigationIcon() {
+        let icon = imagePreview.image?
+            .scaled(CGSize(width: 22, height: 22))
+            .withRenderingMode(.alwaysOriginal)
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: icon, style: .done, target: nil, action: nil)
     }
     
 }
