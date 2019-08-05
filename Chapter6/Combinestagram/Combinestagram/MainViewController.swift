@@ -7,6 +7,10 @@
 //
 
 /*
+ 本章(Chapter6)是在Chapter4的基础上进行开发
+ */
+
+/*
  涉及到的知识点
  Rx相关:
     1. publishSubject, Variable(BehaviorRelay), Observable
@@ -32,6 +36,8 @@ class MainViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private let images = Variable<[UIImage]>([])
+    
+    var start = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,4 +126,55 @@ class MainViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+}
+
+extension MainViewController {
+    
+    /// 对同一个Observable进行多次subscribe的测试
+    ///
+    /// 说明: 每次subscribe, Observable都会执行create方法 即每次订阅 都会创建新的可观察序列, 因此导致每次订阅的结果可能不一样 (即便每次订阅的结果是一样的, 多次对同一个Observable进行订阅也是没必要的)
+    func multiSubscribeToTheSameObservableTest() {
+        let numbers = Observable<Int>.create { observer -> Disposable in
+            let start = self.getStartNumber()
+            observer.onNext(start)
+            observer.onNext(start+1)
+            observer.onNext(start+2)
+            observer.onCompleted()
+            return Disposables.create()
+        }
+        
+        numbers.subscribe(onNext: { element in
+            print("element \(element)")
+        }, onCompleted: {
+            print("-----")
+        })
+            .disposed(by: disposeBag)
+        /*
+         打印结果:
+         element 1
+         element 2
+         element 3
+         -----
+         */
+        
+        
+        numbers.subscribe(onNext: { element in
+            print("element \(element)")
+        }, onCompleted: {
+            print("-----")
+        })
+            .disposed(by: disposeBag)
+        /*
+         打印结果:
+         element 2
+         element 3
+         element 4
+         -----
+         */
+    }
+    
+    func getStartNumber() -> Int {
+        start += 1
+        return start
+    }
 }
